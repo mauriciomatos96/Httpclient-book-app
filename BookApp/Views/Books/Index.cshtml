@@ -1,0 +1,47 @@
+﻿@model List<BookAPI.Models.BookModel>
+
+<h1>Book list</h1>
+
+<i>@ViewData["Error"]</i>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Book</th>
+            <th scope="col">Author</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>@item.Description</td>
+                <td><a href="" class="alert-link">View</a>  <a href="" class="alert-link">Edit</a>  <a href="" class="alert-link">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Add a new Book</h2>
+
+<form>
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" class="form-control" id="Title" placeholder="Enter the title of the book">
+    </div>
+    <div class="form-group">
+        <label for="Author">Author</label>
+        <input type="text" class="form-control" id="Author" placeholder="Enter the author of the book">
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" placeholder="Enter a short description">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
