@@ -38,9 +38,19 @@ namespace BookApp.Controllers
         }
 
         // GET: BooksController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            try
+            {
+                string responseBody = await Client.GetStringAsync($"https://localhost:44321/api/books/{id}");
+                BookModel books = JsonConvert.DeserializeObject<BookModel>(responseBody);
+                return View(books);
+            }
+            catch (Exception)
+            {
+                ViewData["Error"] = "Ocurrio un error inesperado, por favor intente mas tarde.";
+                return View(new List<BookModel>());
+            }
         }
 
         // GET: BooksController/Create
@@ -93,9 +103,19 @@ namespace BookApp.Controllers
         }
 
         // GET: BooksController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            try
+            {
+                //string responseBody = await Client.DeleteAsync($"https://localhost:44321/api/books/{id}");
+                //BookModel books = JsonConvert.DeserializeObject<BookModel>(responseBody);
+                return View();
+            }
+            catch (Exception)
+            {
+                ViewData["Error"] = "Ocurrio un error inesperado, por favor intente mas tarde.";
+                return View(new List<BookModel>());
+            }
         }
 
         // POST: BooksController/Delete/5
